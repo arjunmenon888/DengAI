@@ -12,7 +12,6 @@ from sklearn.ensemble import RandomForestRegressor
 #importing datasets
 df_features = pd.read_csv('dengue_features_train.csv')
 df_lables = pd.read_csv('dengue_labels_train.csv')
-#df_test = pd.read_csv(input('Enter the directory of test file in csv format:  '))
 df_test = pd.read_csv('dengue_features_test.csv')
 
 # preparing feature data
