@@ -4,17 +4,17 @@ Created on Fri Oct 11 17:21:17 2019
 
 @author: ARJUN MENON
 """
-# importing libraries
+# importing libraries.
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import Imputer
 from sklearn.ensemble import RandomForestRegressor
-#importing datasets
+#importing datasets.
 df_features = pd.read_csv('dengue_features_train.csv')
 df_lables = pd.read_csv('dengue_labels_train.csv')
 df_test = pd.read_csv('dengue_features_test.csv')
 
-# preparing feature data
+# preparing feature data.
 def features_data(a):
     dummies = pd.get_dummies(a['city'])
     merged = pd.concat([dummies,a], axis = 'columns')
@@ -36,10 +36,10 @@ X_test = features_data(df_test)
 regressor = RandomForestRegressor(n_estimators = 10, random_state = 0)
 regressor.fit(X_train, y_train)
 test_prediction = np.rint(regressor.predict(X_test))
-#Preparing output
+#Preparing output.
 label = pd.DataFrame({'total_cases':test_prediction}) 
 features = pd.DataFrame(df_test.iloc[:,:3])
 output = pd.concat([features,label], axis = 'columns')
 output['total_cases'] = output['total_cases'].astype(int)
-#getting output file as comma seprated file
+#getting output file.
 submission = pd.DataFrame(output).to_csv('DengAI_submission.csv', index = False)
